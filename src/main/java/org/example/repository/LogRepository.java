@@ -1,6 +1,6 @@
 package org.example.repository;
 
-import org.example.model.Log;
+import org.example.model.StudentLog;
 import org.example.model.Student;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
@@ -9,12 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Repository
 public class LogRepository {
-
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -24,12 +23,12 @@ public class LogRepository {
     }
 
     @Transactional
-    public List<Log> getLogsForStudent(int id) {
+    public List<StudentLog> getLogsForStudent(int id) {
 
         Session session = sessionFactory.getCurrentSession();
         Student student = session.get(Student.class, id);
         Hibernate.initialize(student.getLogs());
-        List<Log> logs = student.getLogs();
+        List<StudentLog> logs = student.getLogs();
 
         return logs;
     }
@@ -39,14 +38,14 @@ public class LogRepository {
 
         Session session = sessionFactory.getCurrentSession();
         Student student = session.get(Student.class, id);
-        Log log = new Log(student, message, new Date());
+        StudentLog log = new StudentLog(student, message, Instant.now());
         session.save(log);
     }
 
     @Transactional
     public void update(int logId, String message) {
         Session session = sessionFactory.getCurrentSession();
-        Log log = session.get(Log.class, logId);
+        StudentLog log = session.get(StudentLog.class, logId);
         log.setMessage(message);
     }
 }

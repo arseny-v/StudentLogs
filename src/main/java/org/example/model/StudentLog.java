@@ -5,12 +5,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Date;
 
 @Entity
 @Table(name = "logs")
 @NoArgsConstructor
-public class Log {
+public class StudentLog {
 
     @Id
     @Column(name = "id")
@@ -33,11 +34,11 @@ public class Log {
     @Getter
     @Setter
     @Column(name = "date")
-    private Date date;
+    private Instant createdAt;
 
-    public Log(Student student, String message, Date date) {
+    public StudentLog(Student student, String message, Instant instant) {
         this.student = student;
         this.message = message;
-        this.date = date;
+        this.createdAt = instant;
     }
 }

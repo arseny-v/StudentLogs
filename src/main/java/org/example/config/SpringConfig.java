@@ -18,14 +18,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-
 @Configuration
 @ComponentScan("org.example")
 @PropertySource("classpath:hibernate.properties")
 @EnableTransactionManagement
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer {
-
     private final ApplicationContext applicationContext;
 
     private final Environment env;

@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public class StudentRepository {
-
     private final SessionFactory sessionFactory;
 
     public StudentRepository(SessionFactory sessionFactory) {
@@ -19,7 +18,6 @@ public class StudentRepository {
 
     @Transactional
     public List<Student> getAll() {
-
         Session session = sessionFactory.getCurrentSession();
 
         return session.createQuery("select s from Student s", Student.class)
@@ -28,14 +26,12 @@ public class StudentRepository {
 
     @Transactional
     public void remove(int id) {
-
         Session session = sessionFactory.getCurrentSession();
         session.remove(session.get(Student.class, id));
     }
 
     @Transactional
     public void save(Student student) {
-
         Session session = sessionFactory.getCurrentSession();
         session.save(student);
     }

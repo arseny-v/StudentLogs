@@ -12,7 +12,6 @@ import java.util.List;
 @Table(name = "students")
 @NoArgsConstructor
 public class Student {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +28,7 @@ public class Student {
     @Setter
     @OneToMany(mappedBy = "student")
     @JsonIgnore
-    private List<Log> logs;
+    private List<StudentLog> logs;
 
     public Student(String name) {
         this.name = name;

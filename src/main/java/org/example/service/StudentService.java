@@ -14,23 +14,19 @@ public class StudentService {
 
     @Autowired
     public StudentService(StudentRepository studentRepository) {
-
         this.studentRepository = studentRepository;
     }
 
 
     public List<Student> getAllStudents() {
-
         return studentRepository.getAll();
     }
 
     public void remove(int id) {
-
         studentRepository.remove(id);
     }
 
     public void addNewStudent(Student student) {
-
         studentRepository.save(student);
     }
 }
